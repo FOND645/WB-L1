@@ -1,6 +1,15 @@
+// Реализовать аналог библиотеки Math (можно назвать MathX) с базовым набором функций, используя замыкания:
+// вычисление N-го числа в ряду Фибоначчи 
+// вычисление всех чисел в ряду Фибоначчи до числа N
+// вычисление N-го просто числа
+// вычисление всех простых чисел до числа N
+// kl
+// Будет плюсом, если задумаетесь и об оптимизации.
+
+
 class CustomMath {
     // Хэш чисел фибоначчи
-    fibonacciNums = [1, 1]
+    fibonacciNums = [1, 1];
     getNthFibonacciFunction(needArray) {
         return (N) => {
             if (this.fibonacciNums.length >= N) return needArray ? this.fibonacciNums.slice(0, N) : this.fibonacciNums[N - 1]
@@ -12,14 +21,15 @@ class CustomMath {
             }
         }
     }
-    getFibonacciNthNum = this.getNthFibonacciFunction(false)
-    getFibonacciNNums = this.getNthFibonacciFunction(true)
+    getFibonacciNthNum = this.getNthFibonacciFunction(false);
+    getFibonacciNNums = this.getNthFibonacciFunction(true);
 
     // Хэширование простых чисел
-    simpleNums = [2, 3, 5]
-    isSimple = (num) => {
+    simpleNums = [2, 3, 5];
+    isSimple(num) {
         return this.simpleNums.every(Simp => num % Simp !== 0)
-    }
+    };
+
     // Функция высшего порядка
     // Если true, то возвращает функцию возвращающую массив из N простых числе
     // Если false, то возвращает функцию возвращающую N-е простое число
@@ -33,14 +43,13 @@ class CustomMath {
                 temp += 2
             }
         }
-    }
+    };
 
     getNthSimpleNum = this.getNthSimpleFunction(false);
     getNSimpleNums = this.getNthSimpleFunction(true)
 
 }
 
-const CMath = new CustomMath
-
-console.log(CMath.getFibonacciNNums(10))
-console.log(CMath.getFibonacciNthNum(12))
+const MathX = new CustomMath
+console.log(MathX.getFibonacciNNums(10))
+console.log(MathX.getFibonacciNthNum(10))

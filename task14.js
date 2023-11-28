@@ -13,5 +13,3 @@ function getFetchImgPromise(url) {
             .then((data) => res(data));
     });
 }
-
-getFetchImgPromise(url);
