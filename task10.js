@@ -1,3 +1,6 @@
+// Реализовать функцию конвертации строки в JSON со
+// всеми необходимыми проверками и валидациями.
+
 function JSONparse(JSONstring) {
     if (JSONstring === 'null') return null
     else if (JSONstring === 'true') return true

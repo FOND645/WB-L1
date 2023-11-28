@@ -1,3 +1,6 @@
+// Подсчитать максимальный объем данных, который 
+// можно записать в localStorage вашего браузера.
+
 function getString(N) {
     return new Array(N).fill('A').join('')
 }
