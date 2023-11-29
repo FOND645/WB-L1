@@ -33,7 +33,9 @@ class GeoCodeAutocompite {
                 this.fetchCallback([])
                 return
             }
+
             if (timeout) return
+            
             clearTimeout(timeout)
             timeout = setTimeout(() => {
                 this.fetchAddresPromise(text, this.fetchCallback.bind(this))
