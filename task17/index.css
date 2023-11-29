@@ -23,8 +23,29 @@ body {
     font-size: 22px;
 }
 
-#drop-down-list {
-    display: none;
+.drop-down-list {
+    height: 0;
+    display: flex;
     flex-direction: column;
-    
+    width: 40rem;
+}
+
+.drop-down-element {
+    cursor: pointer;
+    width: 100%;
+    word-wrap: normal;
+    font-size: 16px;
+    padding: 4px;
+    background-color: #F0F0F0;
+}
+
+.drop-down-list::before{
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.drop-down-list::after {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
 }
