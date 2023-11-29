@@ -7,7 +7,12 @@ class VKExtension {
         this.apiKey = apiKey;
         this.communityDomain = communityDomain;
         this.postsContainerElement = document.getElementById('widget');
-        this.drawPosts();
+        if (!localStorage.hasOwnProperty('localStorageMaxSize')) {
+            this.updateLocalStorageMaxSize();
+            this.pullRemoteData();
+        } else {
+            this.drawPosts();
+        }
     }
 
     getLocalStoragePostsIDs() {
@@ -17,6 +22,45 @@ class VKExtension {
                 result.push(postID.replace('postID:', ''));
         }
         return result;
+    }
+
+    updateLocalStorageMaxSize() {
+        function getString(N) {
+            return new Array(N).fill('A').join('');
+        }
+        localStorage.clear();
+        let writenString = '';
+        let i = new Array(5).fill(0);
+        for (let raz = 10000; raz >= 1; raz = raz / 10) {
+            try {
+                while (true) {
+                    writenString = writenString + getString(raz);
+                    localStorage.setItem('mass', writenString);
+                    i[raz.toString().length - 1]++;
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        const writeSymbCount = i.reduce(
+            (Sum, Num, Ind) => (Sum += Math.pow(10, Ind) * Num),
+            0
+        );
+        localStorage.clear();
+        localStorage.setItem(
+            'localStorageMaxSize',
+            (writeSymbCount * 2 * 8).toString()
+        );
+    }
+
+    getLocalStorageSize() {
+        let symbolsCount = 0;
+        for (let field in localStorage) {
+            if (typeof localStorage[field] !== 'string') continue;
+            symbolsCount += field.length;
+            symbolsCount += localStorage.getItem(field).length;
+        }
+        return symbolsCount * 2 * 8;
     }
 
     getLocalPost(ID) {
@@ -108,6 +152,9 @@ class VKExtension {
         data.posts.forEach((Post) => {
             this.writeLocalPost(Post);
         });
+        console.log(
+            `В localStorage занято ${this.getLocalStorageSize().toLocaleString()} из ${(+localStorage.localStorageMaxSize).toLocaleString()} бит`
+        );
         this.drawPosts();
     }
 
@@ -115,7 +162,7 @@ class VKExtension {
         (() => {
             this.pullRemoteData(0, 100);
         }).bind(this),
-        15000
+        4000
     );
 }
 
