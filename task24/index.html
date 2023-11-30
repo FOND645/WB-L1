@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0" />
-        <script
-            type="module"
-            src="index.js"
-            defer></script>
-        <link
-            rel="stylesheet"
-            href="index.css" />
-        <title>Document</title>
-    </head>
-    <body>
-        <div class="table-container">
-            <div class="page-control-container">
-                <input type="number" />
-                <p class="page-button"><</p>
-                <div class="pages-buttons"></div>
-                <p class="page-button">></p>
-            </div>
-            <div class="table">
-                <p class="table-col-header">Имя</p>
-                <p class="table-col-header">Фамилия</p>
-                <p class="table-col-header">Телефон</p>
-                <p class="table-col-header">Адрес</p>
-                <p class="table-col-header">Город</p>
-                <p class="table-col-header">Штат</p>
-                <p class="table-col-header">Индекс</p>
-            </div>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="table-container">
+        <div class="page-control-container">
+            <p class="page-button" id="page-decrement">←</p>
+            <input type="number" min="1" id="input"/>
+            <p class="page-button" id="page-increment">→</p>
         </div>
-    </body>
+        <div class="table" id="table">
+            <p class="table-col-header">Имя <span class="page-button" id="sort-button-fname">|</span></p>
+            <p class="table-col-header">Фамилия <span class="page-button" id="sort-button-lname">|</span></p>
+            <p class="table-col-header">Телефон<span class="page-button" id="sort-button-tel">|</span></p>
+            <p class="table-col-header">Адрес <span class="page-button" id="sort-button-address">|</span></p>
+            <p class="table-col-header">Город <span class="page-button" id="sort-button-city">|</span></p>
+            <p class="table-col-header">Штат <span class="page-button" id="sort-button-state">|</span></p>
+            <p class="table-col-header">Индекс <span class="page-button" id="sort-button-zip">|</span></p>
+        </div>
+    </div>
+</body>
+
 </html>
