@@ -1,7 +1,7 @@
 class Table {
     constructor() {
         this.data = [];
-        this.size = 10
+        this.size = 50
         this.pageNumber = 1
         this.sortOrder = {
             column: false,
