@@ -8,13 +8,20 @@ const staticDir = path.resolve(__dirname);
 const SERVER_PORT = 18080;
 
 server.use(cors());
-
 server.use(express.static(staticDir));
 
-server.use(bodyParser.urlencoded({ extended: true }));
 
-server.post('/sendData', (res, req) => {
-    console.log(JSON.stringify(res.body, null, 2));
+server.use('/sendDataJS', express.json()); // Применение промежуточного ПО для парсинга тела запроса как JSON
+server.post('/sendDataJS', (req, res) => {
+    console.log('/sendDataJS')
+    console.log('body', req.body);
+    res.send('Data received successfully'); // Отправка ответа на запрос
+})
+
+server.use('/sendDataHTML', bodyParser.urlencoded({ extended: true }));
+server.post('/sendDataHTML', (req, res) => {
+    console.log('body', req.body);
+    res.send('Data received successfully'); // Отправка ответа на запрос
 });
 
 server.use('/vkapi', (req, res, next) => {

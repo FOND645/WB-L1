@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <form
-            action="/sendData"
-            method="post">
-            <label for="name">Имя:</label>
-            <input
-                type="text"
-                id="name"
-                name="name" /><br /><br />
 
-            <label for="email">Email:</label>
-            <input
-                type="email"
-                id="email"
-                name="email" /><br /><br />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+</head>
 
-            <label for="message">Сообщение:</label><br />
-            <textarea
-                id="message"
-                name="message"
-                rows="4"
-                cols="50"></textarea
-            ><br /><br />
+<body>
+    <form action="/sendDataHTML" method="post">
+        <h2>HTML форма</h2>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" /><br /><br />
 
-            <label for="gender">Пол:</label>
-            <select
-                id="gender"
-                name="gender">
-                <option value="male">Мужской</option>
-                <option value="female">Женский</option></select
-            ><br /><br />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" /><br /><br />
 
-            <input
-                type="submit"
-                value="Отправить" />
-        </form>
-    </body>
+        <label for="message">Сообщение:</label><br />
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br /><br />
+
+        <label for="gender">Пол:</label>
+        <select id="gender" name="gender">
+            <option value="male">Мужской</option>
+            <option value="female">Женский</option>
+        </select><br /><br />
+
+        <input type="submit" value="Отправить" />
+    </form>
+    <div>
+        <h2>JS форма</h2>
+        <label for="name">Имя:</label>
+        <input type="text" id="nameJS" name="name" /><br /><br />
+
+        <label for="email">Email:</label>
+        <input type="email" id="emailJS" name="email" /><br /><br />
+
+        <label for="message">Сообщение:</label><br />
+        <textarea id="messageJS" name="message" rows="4" cols="50"></textarea><br /><br />
+
+        <label for="gender">Пол:</label>
+        <select id="genderJS" name="gender">
+            <option value="male">Мужской</option>
+            <option value="female">Женский</option>
+        </select><br /><br />
+
+        <button id="submitJS">Отправить</button>
+    </div>
+</body>
+
 </html>
