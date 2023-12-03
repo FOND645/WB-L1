@@ -3,13 +3,18 @@
 // на выходе объект, представляющий из себя односвязный список.
 
 function convertToLinkedList(JSONstring) {
+    // Парсим данные из JSON'a
     let array = JSON.parse(JSONstring);
+
+    // Проходимся по всем элементам массив
     for (let i = array.length - 1; i >= 0; i--) {
+        // Если это последний элемент в массиве, то преобразуем его в узел без ссылки на следующий узел
         if (i === array.length - 1) {
             array[i] = {
                 element: array[i],
             };
         } else {
+            // А если нет, то преобразуем его в узел и оставляем next - ссылку на следующий узел
             array[i] = {
                 element: array[i],
                 next: array[i + 1],

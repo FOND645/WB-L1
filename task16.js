@@ -4,6 +4,7 @@
 
 const Moment = require('moment');
 
+// Функция принимает дату и возвращает ее приведенную к определенному формату
 function getFormatDate(date) {
     date = Moment(date).format('DD of MMMM YYYY HH:MM:SS');
     return date;

@@ -9,6 +9,7 @@ const book = {
     _ISBN: '978-5-17-145607-8',
     _publishingYear: 2022,
 
+    // Метод для установки нового имени автора с проверкой валидности
     setAuthorName(newName) {
         if (typeof newName !== 'string')
             throw new TypeError(
@@ -17,6 +18,7 @@ const book = {
         this._authorName = newName;
     },
 
+    // Метод для установки нового имени автора с проверкой валидности
     setAuthorLastName(newName) {
         if (typeof newName !== 'string')
             throw new TypeError(
@@ -25,6 +27,7 @@ const book = {
         this._authorLastName = newName;
     },
 
+    // Метод для установки новой фамилии автора с проверкой валидности
     setBookName(newName) {
         if (typeof newName !== 'string')
             throw new TypeError(
@@ -33,6 +36,7 @@ const book = {
         this._bookName = newName;
     },
 
+    // Метод для установки нового года издательства с проверкой валидности
     setPublishingYear(newPubYear) {
         if (typeof newPubYear !== 'number')
             throw new TypeError(
@@ -48,6 +52,7 @@ const book = {
         this._publishingYear = newPubYear;
     },
 
+    // Метод для установки нового номера ISBN с проверкой валидности
     setISBN(newISBN) {
         const isValidISBN = /^(978|979)-\d-\d{2}-\d{6}-\d$/.test(newISBN);
         if (!isValidISBN) throw new Error('ISBN не валиден');

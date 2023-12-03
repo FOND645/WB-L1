@@ -3,10 +3,15 @@
 // которое равно сумме всех своих делителей, кроме самого себя.
 
 function isStrangeNum(number) {
+    if (typeof number !== 'number') throw new TypeError('This is not a number');
     let sum = 0;
+    // Иницируем проверку числа от половины его до 0 не включительно
     for (let i = Math.floor(number / 2); i > 0; i--) {
+        // Проверяем делитель ли это и если нет, то продолжаем цикл
         if (number % i !== 0) continue;
+        // А если да, то плюсуем число к сумме делителей
         sum += i;
+        // Если сумма чисел УЖЕ больше самого числа - проверять дальше нет смысла - возвращаем false
         if (sum > number) return false;
     }
     return number === sum;

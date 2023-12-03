@@ -5,19 +5,25 @@
 // методы расчета площади и периметра для каждой фигуры.
 
 class Shape {
+    // Метод получения расстояния между 2 точками
     getLineLength(p1, p2) {
         return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
     }
 
+    // Метод для проверки есть ли в массиве совпадающие точки
     hasDuplicatePoints(pointsArray) {
         return (
-            new Set(pointsArray.map((Point) => JSON.stringify(Point))).size !==
-            pointsArray.length
+            new Set(pointsArray.map((Point) => `${Point.x}:${Point.y}`))
+                .size !== pointsArray.length
         );
     }
 
+    // Метод проверки прямоуголЬника
     isRectangle(p1, p2, p3, p4) {
+        // Проверяме нет ли совпадений среди данных точкек
         if (this.hasDuplicatePoints([p1, p2, p3, p4])) return false;
+
+        // Вычисляем дистанции между всеми точками
         const distances = [
             this.getLineLength(p1, p2),
             this.getLineLength(p1, p3),
@@ -26,6 +32,9 @@ class Shape {
             this.getLineLength(p2, p4),
             this.getLineLength(p3, p4),
         ];
+        // Теперь нам надо пересчитать количество одинаковых дистанций.
+        // У прямоугольника следующая конфигурация одинаковых линий:
+        // 2 равные параллельные стороны, 2 равные параллельные стороны, 2 равных диаметра,
         const lengthsCountObj = {};
         distances.forEach((Dist) => {
             if (lengthsCountObj.hasOwnProperty(Dist.toString())) {
@@ -44,6 +53,8 @@ class Shape {
         return new Set(lengths).size === 3;
     }
 
+    // Метод для проверки - не вырожденный ли треугольник?
+    // Нужно вычислить площадь треугольника. Если она == 0, то треугольник вырожденный
     isNormalTriangle(p1, p2, p3) {
         const A = this.getLineLength(p1, p2);
         const B = this.getLineLength(p2, p3);
@@ -52,6 +63,7 @@ class Shape {
         return Math.sqrt(p * (p - A) * (p - B) * (p - C)) !== 0;
     }
 
+    // Метод проверки квадрата
     isSquare(p1, p2, p3, p4) {
         if (this.hasDuplicatePoints([p1, p2, p3, p4])) return false;
         const distances = [

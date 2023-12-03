@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <p>Level 5</p>
-        <script>documnet.write(
-            `<div>
-        <p>Level 4</p>
-        <script>documnet.write(
-            `<div>
-        <p>Level 3</p>
-        <script>documnet.write(
-            `<div>
-        <p>Level 2</p>
-        <script>documnet.write(
-            `<div>
-        <p>Level 1</p>
-        <script>documnet.write(
-            `<p>End level</p>`
-        )</script>
-    </div>`
-        )</script>
-    </div>`
-        )</script>
-    </div>`
-        )</script>
-    </div>`
-        )</script>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <script
+            type="module"
+            src="index.js"
+            defer></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function addDocWrt(count) {
+                if (!count) return '<p>End level</p>';
+                return (
+                    `<div>
+            <p>Level ${count}</p>
+            <scr` +
+                    `ipt>documnet.write(\`${addDocWrt(count - 1)}\`)</<scr` +
+                    `ipt>
+            </div>`
+                );
+            }
+            document.write(addDocWrt(5));
+        </script>
+    </body>
 </html>

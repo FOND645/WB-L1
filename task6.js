@@ -5,8 +5,11 @@
 // сортирует по алфавиту по полю name.
 
 function sortArray(arr) {
+    // Возвращаем сортированный массив
     return arr.sort((A, B) => {
+        // Если есть разница в возрастах, то возвращаем ее
         if (A.age !== B.age) return A.age - B.age;
+        // Иначе сравниваем имена
         if (A.name > B.name) return 1;
         if (A.name < B.name) return -1;
         return 0;
