@@ -1,6 +1,3 @@
-const { writeFileSync } = require('fs');
-const path = require('path');
-
 function addDocWrt(count) {
     if (!count) return '<p>End level</p>';
     return (
@@ -13,4 +10,4 @@ function addDocWrt(count) {
     );
 }
 
-writeFileSync(path.resolve(__dirname, 'N.html'), addDocWrt(5));
+setTimeout(() => document.write(addDocWrt(12)), 4000);
