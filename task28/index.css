@@ -1,0 +1,15 @@
+.orgignal-button {
+    width: 150px;
+    height: 80px;
+    background-color: red;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.clone-button {
+    width: 150px;
+    height: 80px;
+    background-color: yellowgreen;
+    cursor: pointer;
+    border-radius: 8px;
+}
