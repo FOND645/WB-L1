@@ -5,11 +5,23 @@
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0" />
-        <script
-            type="module"
-            src="index.js"
-            defer></script>
         <title>Document</title>
     </head>
-    <body></body>
+    <body>
+        <!-- Пытаемся рекурсивно вызвать document.write. -->
+        <!-- Однако брузер интерпретирует только первый вызов -->
+        <!-- Остальные игнорирует -->
+        <!-- Если вызывать document.write просто рекурсивно без -->
+        <!-- HTML кода внутри то он будет вызываться, до тех пор -->
+        <!-- Пока не произойдет переполнение стека как в задаче №21 -->
+        <script>function recursiveWrite(N) {
+            if (N === 0) return `<p>Level ${N}</p>`
+            return `<div>
+            <p>Level ${N}</p>
+            <scr`+`ipt>documnet.write(${recursiveWrite(N-1)})</scr`+`ipt>
+            </div>`
+        }
+        
+        document.write(recursiveWrite(10))</script>
+    </body>
 </html>

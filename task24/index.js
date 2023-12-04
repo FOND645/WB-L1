@@ -1,3 +1,11 @@
+// Разработайте страницу, отображающую таблицу с данными. Данные необходимо подгружать из этого источника.
+
+// Требования:
+// данные должны загружаться при загрузке страницы
+// необходимо реализовать сортировку по убыванию и по возрастания для всех колонок
+// необходимо реализовать клиентскую пагинацию (50 элементов на странице)
+
+// Создадим класс
 class Table {
     constructor() {
         this.data = [];
@@ -21,6 +29,8 @@ class Table {
 
     }
 
+    // Функция высшего порядка - возвращает хэндлер 
+    // для нажатия на кнопки следующей и предыдущей страницы
     getPageButtonsHandler(isIncrement) {
         return () => {
             console.log('handler')
@@ -37,6 +47,7 @@ class Table {
         }
     }
 
+    // Метод форматирующая ввод страницы
     inputFormater() {
         if (this.inputElement.value % 1 !== 0) this.inputElement.value = Math.trunc(this.inputElement.value)
         if (this.inputElement.value.toString() === '') return
@@ -47,6 +58,8 @@ class Table {
         this.drawTable()
     }
 
+    // Функция высшего порядка - возвращает хэндлер 
+    // для нажатия на кнопки сортировки столбцов
     getSorterButtonHandler(fieldName) {
         return () => {
             if (this.sortOrder.column === fieldName) {
@@ -64,6 +77,7 @@ class Table {
         }
     }
 
+    // Метод для получения HTML заголовка таблицы
     getTableHeaderHTML() {
         return [
             { name: 'fname', title: 'Имя' },
@@ -82,22 +96,24 @@ class Table {
             }).join('')
     }
 
+    // Метод для получения HTML строки таблицы
     getTableRowHTML(record) {
         const { fname, lname, tel, address, city, state, zip } = record
         return [fname, lname, tel, address, city, state, zip].map(Cell => `<p class="table-cell">${Cell}</p>`).join('')
     }
 
+    // Метод для получения HTML всей таблицы
     getVisibleTableHTML() {
         const visibleData = this.getVisibleData(this.size, this.pageNumber)
         return visibleData.map(Row => this.getTableRowHTML(Row)).join('')
     }
 
-
+    // Метод для отрисовки таблицы
     drawTable() {
         this.tableElement.innerHTML = this.getTableHeaderHTML() + this.getVisibleTableHTML()
         this.inputElement.max = Math.trunc(this.data.length / this.size)
 
-        if (+this.inputElement.max === this.pageNumber) {                
+        if (+this.inputElement.max === this.pageNumber) {
             this.incrButtonElement.style.cursor = 'not-allowed'
             this.incrButtonElement.style.color = 'gray'
         } else {
@@ -105,7 +121,7 @@ class Table {
             this.incrButtonElement.style.color = 'black'
         }
 
-        if (this.pageNumber === 1) {            
+        if (this.pageNumber === 1) {
             this.decrButtonElement.style.cursor = 'not-allowed'
             this.decrButtonElement.style.color = 'gray'
         } else {
@@ -119,6 +135,7 @@ class Table {
         })
     }
 
+    // Метод для получения данных
     fetchData() {
         return new Promise((res, rej) => {
             fetch(this.url)
@@ -130,6 +147,7 @@ class Table {
         });
     }
 
+    // Метод для сравнения данных
     compareElements(A, B, order) {
         if (typeof A === "number") A = A.toString()
         if (typeof B === "number") B = B.toString()
@@ -139,6 +157,7 @@ class Table {
         return 0
     }
 
+    // Метод для выборки отображаемых данных на основе пагинации
     getVisibleData(size, pageNumber) {
         const start = size * (pageNumber - 1);
         const end = size * pageNumber;
